@@ -61,3 +61,4 @@ docker build -f Dockerfile.cubes . -t cubes
 docker run --rm --name cubes -e DISPLAY=<your_ipv4_address>:0.0 cubes:latest
 ```
 
+You can test GLFW by building Dockerfile.glfw
