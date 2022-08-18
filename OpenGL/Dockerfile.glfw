@@ -2,15 +2,19 @@ FROM ubuntu:20.04
 
 RUN apt-get update
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential bash xserver-xorg-dev libx11-dev libgl1-mesa-dev libglew-dev libglfw3-dev libglm-dev cmake gcc
+RUN apt-get upgrade -y
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends --fix-missing gnupg wget build-essential
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends bash xserver-xorg-dev libx11-dev libgl1-mesa-dev libglew-dev libglfw3-dev libglm-dev cmake gcc
 
 WORKDIR /usr/src/OpenGL
 
-COPY CubeScene .
+COPY GLFWTest .
 
 RUN cmake -S . -B build
 
 RUN cmake --build build
 
-CMD build/cubes
+CMD build/glfwTest
 
