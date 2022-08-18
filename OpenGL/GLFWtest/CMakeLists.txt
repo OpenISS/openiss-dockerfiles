@@ -8,7 +8,7 @@ find_package(glfw3 REQUIRED)
 
 set(EXEC glfwTest)
 
-add_executable(${EXEC} gflw_test.cpp)
+add_executable(${EXEC} glfw_test.cpp)
 
 target_link_libraries(${EXEC} OpenGL::GL GLEW glfw)
 
