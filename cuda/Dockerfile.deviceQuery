@@ -1,0 +1,15 @@
+FROM nvidia/cuda:11.7.1-devel-ubuntu20.04
+
+RUN apt-get update
+
+RUN apt-get install -y git make
+
+WORKDIR /code/nvidia
+
+RUN git clone https://github.com/NVIDIA/cuda-samples.git
+
+WORKDIR cuda-samples/Samples/1_Utilities/deviceQuery
+
+RUN make
+
+CMD ./deviceQuery
