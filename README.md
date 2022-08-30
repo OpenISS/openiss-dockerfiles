@@ -1,4 +1,4 @@
-# Setting up NVidia Docker on Magik
+# Setting up NVidia Docker on Windows
 
 ## Step 1: Get correct Windows version
 

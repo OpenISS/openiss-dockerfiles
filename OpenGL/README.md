@@ -24,7 +24,7 @@ Once installed run XLaunch
 
 5. Finish
 
-## Testing a Graphics
+## Testing a Graphical Program
 
 First get your IPv4 address:
 
