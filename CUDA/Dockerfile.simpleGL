@@ -6,8 +6,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends gi
 
 WORKDIR /code/nvidia
 
-#RUN git clone https://github.com/NVIDIA/cuda-samples.git
-COPY cuda-samples cuda-samples
+RUN git clone https://github.com/NVIDIA/cuda-samples.git
 
 WORKDIR cuda-samples/Samples/5_Domain_Specific/simpleGL
 
