@@ -6,7 +6,7 @@ Ensure that Windows OS is Windows 10 version 21H2 or higher, or Windows 11.
 
 You can check by looking by using `winver` in the terminal.
 
-![winver](docs/images/Windows_Version.png)
+![winver](images/Windows_Version.png)
 
 ## Step 2: Setup WSL
 
@@ -53,7 +53,7 @@ Download and install docker desktop from [https://docs.docker.com/desktop/window
 
 Once it is downloaded, go to settings and make sure it WSL integration is set to use Ubuntu.
 
-![Docker settings](docs/images/Docker_setup.png)
+![Docker settings](images/Docker_setup.png)
 
 ## Step 5: Setup CUDA
 
