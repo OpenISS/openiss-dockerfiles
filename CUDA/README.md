@@ -10,12 +10,12 @@ These examples are built from the Ubuntu 20.04 Nvidia CUDA image (specifically, 
 This will build the [deviceQuery](https://github.com/NVIDIA/cuda-samples/tree/master/Samples/1_Utilities/deviceQuery) program from cuda-samples.
 
 ```
-docker build -t simpleGL -f Dockerfile.deviceQuery .
+docker build -t deviceQuery -f Dockerfile.deviceQuery .
 ```
 
 To run it you need to use the `--gpus` flag or else it will fail:
 ```
-docker run --name simpleGL --gpus all --rm simpleGL:latest
+docker run --name deviceQuery --gpus all --rm deviceQuery:latest
 ```
 
 ## OpenGL (non-functional)
