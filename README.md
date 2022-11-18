@@ -27,6 +27,8 @@ the documentation is further below.
 TL;DR
 
 - Versioning: season-sequence number, e.g., `W22-01`
+- Prebuilt images on DockerHub: https://hub.docker.com/u/openiss
+- Prebuild images on GitHub, use `ghcr.io`
 
 Small vanilla sample containers:
 
