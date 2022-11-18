@@ -39,7 +39,7 @@ Under the `Ethernet adapter vEthernet (WSL):` header there should be a line cont
 ip route
 ```
 
-The first line should contain the IP address
+The first line should contain the IP address.
 
 In the terminal run:
 ```
@@ -50,6 +50,7 @@ docker run --rm --name xeyes -e DISPLAY=<your_IPv4_address>:0.0 xeyes:latest
 ![xeyes](images/xeyes.png)
 
 If you see the xeyes program appear, that means graphics are working.
+(The xeyes example is not technically OpenGL, but more so X11 but allows for a quick test of graphical display from Linux to Windows).
 
 ## Running the OpenGL examples
 
@@ -61,5 +62,4 @@ docker build -f Dockerfile.cubes . -t cubes
 docker run --rm --name cubes -e DISPLAY=<your_ipv4_address>:0.0 cubes:latest
 ```
 
-You can test GLFW by building Dockerfile.glfw
-
+You can test GLFW by building `Dockerfile.glfw` and the triangle OpenGL example using `Dockerfile.glfw`.

@@ -1,4 +1,4 @@
-# OpenISS Dockerfiles
+# OpenISS Graphical and ML Dockerfiles
 
 For teaching, learnding, and HPC research.
 
@@ -7,16 +7,20 @@ Use CUDA versions primarily for ML stuff.
 
 The containers provided here are possible starter sample containers
 that extend existing ones with samples preloaded or build new ones.
-Some are very simple and basics, while others are more complete.
+Some are very simple and basic, while others are more complete.
 Feel free to choose any applicable ones.
 
-There is a choice of either building a container locally using its Dockerfile
-script or pulling pre-built images, whichever is faster.
+There is a choice of either building a container locally using its `Dockerfile`
+script or pulling pre-built images from DockerHub or GHCR, whichever is faster.
 
 We then include complete OpenISS inside the container for image and motion
 data processing.
 
-If you want to reproduce the setup on Windows the documentation is below.
+If you want to reproduce the setup on Windows on your own machine
+the documentation is further below.
+
+* These instructions originally tested and created by [Jonathan Llewellyn](https://github.com/inexistenz)
+* Maintenance, editorializing, OpenISS and HPC updates/support by Serguei Mokhov
 
 # Sample containers
 
@@ -33,12 +37,12 @@ OpenGL:
 - `openiss-opengl-cubes:W22-01` -- simple cubes example
 - `openiss-opengl-glfw:W22-01` -- example of using GLFW
 - `openiss-opengl-triangle:W22-01` -- simple triangle
-- `openiss-xeyes:W22-01` -- X11 test
+- `openiss-xeyes:W22-01` -- X11 graphics test with the `xeyes` program
 
 CUDA:
 
-- `openiss-cuda-device-query:W22-01`, includes official `cuda-samples`
-- `openiss-cuda-opengl:W22-01`, includes official `cuda-samples` (not supported on Windows WSL)
+- `openiss-cuda-devicequery:W22-01`, includes official `cuda-samples`
+- `openiss-cuda-opengl:W22-01`, includes official `cuda-samples` (OpenGL+CUDA supported on Windows WSL)
 
 ML:
 
@@ -52,19 +56,19 @@ ML:
 ## Pulling
 
 ```
-docker pull openiss/openiss-ws
+docker pull openiss/openiss-opengl-cubes
 ```
 
 To pull a specific tag, suffix it at the end of the pull:
 
 ```
-docker run --rm -it --gpus=all openiss/openiss-ws:01
+docker run --rm -it --gpus=all openiss/openiss-opengl-cubes:W22-01
 ```
 
 ## Running 
 
 ```
-docker run --rm -it --gpus=all openiss/openiss-ws:01
+docker run --rm -it --gpus=all openiss/openiss-opengl-cubes:W22-01
 ```
 
 # Setting up
