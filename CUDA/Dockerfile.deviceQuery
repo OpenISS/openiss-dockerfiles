@@ -10,6 +10,7 @@ RUN git clone https://github.com/NVIDIA/cuda-samples.git
 
 WORKDIR cuda-samples/Samples/1_Utilities/deviceQuery
 
-RUN make
+# 90 breaks currently in nvcc in 11.7
+RUN make SMS="35 37 50 52 60 61 70 75 80 86"
 
 CMD ./deviceQuery
