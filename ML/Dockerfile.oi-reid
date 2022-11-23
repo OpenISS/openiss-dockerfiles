@@ -1,0 +1,33 @@
+FROM openiss-cuda-devicequery:W22-01
+
+#RUN apt-get update
+#RUN apt-get install -y git make
+RUN apt-get install -y nvidia-utils
+#RUN apt-get install -y curl
+
+
+#WORKDIR /code/nvidia
+#RUN git clone https://github.com/NVIDIA/cuda-samples.git
+
+#WORKDIR /tmp
+#curl –O https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+#bash Anaconda3-2020.02-Linux-x86_64.sh
+
+FROM continuumio/anaconda3
+
+#WORKDIR cuda-samples/Samples/1_Utilities/deviceQuery
+
+WORKDIR /
+RUN git clone https://github.com/carlos-encs/openiss-reid-tfk.git
+RUN cd openiss-reid-tfk/datasets && ./get_dataset_market1501.sh
+
+#conda env create -f environment.yml -p /speed-scratch/$USER/reid-venv
+#conda activate /speed-scratch/$USER/reid-venv
+#python reid.py
+#conda deactivate
+
+# 90 breaks currently in nvcc in 11.7
+#RUN make SMS="35 37 50 52 60 61 70 75 80 86"
+
+#CMD ./deviceQuery
+CMD /bin/bash
