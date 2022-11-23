@@ -166,6 +166,13 @@ docker run --rm -it --gpus=all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -
 
 This should also work in an Ubuntu terminal.
 
+## ML
+
+```
+docker pull continuumio/miniconda3
+docker run -i -t -p 8888:8888 continuumio/miniconda3 /bin/bash -c "/opt/conda/bin/conda install jupyter -y --quiet && mkdir /opt/notebooks && /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"
+```
+
 ## Setting up on macOS
 
 TODO
