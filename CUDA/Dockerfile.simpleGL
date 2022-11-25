@@ -1,12 +1,14 @@
 FROM nvidia/cuda:11.7.1-devel-ubuntu20.04
 
-RUN apt-get update
+# --fix-missing is there in case upstream changes and updates are failing
+RUN apt-get update --fix-missing
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git make mesa-common-dev libglu1-mesa-dev freeglut3-dev gdb
 
 WORKDIR /code/nvidia
 
-RUN git clone https://github.com/NVIDIA/cuda-samples.git
+# Don't clone the whole history, just the latest commit
+RUN git clone --depth 1	https://github.com/NVIDIA/cuda-samples.git
 
 WORKDIR cuda-samples/Samples/5_Domain_Specific/simpleGL
 
