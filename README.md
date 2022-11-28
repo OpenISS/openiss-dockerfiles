@@ -1,14 +1,15 @@
 # OpenISS Graphical and ML Dockerfiles
 
-For teaching, learnding, and HPC research.
+For teaching, learnding, and HPC research as well as OpenISS deployments.
 
+Use X11 versions to check if your graphics pipeline works between your host OS and the container, especially Windows.
 Use OpenGL versions primarily for graphics rendering.
 Use CUDA versions primarily for ML stuff.
 
 The containers provided here are possible starter sample containers
 that extend existing ones with samples preloaded or build new ones.
 Some are very simple and basic, while others are more complete.
-Feel free to choose any applicable ones.
+Feel free to choose any applicable ones and extend them.
 
 There is a choice of either building a container locally using its `Dockerfile`
 script or pulling pre-built images from DockerHub or GHCR, whichever is faster.
@@ -28,27 +29,37 @@ TL;DR
 
 - Versioning: season-sequence number, e.g., `W22-01`
 - Prebuilt images on DockerHub: https://hub.docker.com/u/openiss
-- Prebuild images on GitHub, use `ghcr.io`
+- For prebuilt images on GitHub, use `ghcr.io`
 
 Small vanilla sample containers:
 
-OpenGL:
+## X11
+
+- `openiss/openiss-xeyes:W22-01` -- X11 graphics test with the `xeyes` program
+
+## OpenGL
 
 - `openiss-opengl-ogl` -- OpenISS OGL extension samples
 - `openiss-opengl-sample-projects` -- all inclusive
-- `openiss-opengl-cubes:W22-01` -- simple cubes example
-- `openiss-opengl-glfw:W22-01` -- example of using GLFW
-- `openiss-opengl-triangle:W22-01` -- simple triangle
-- `openiss-xeyes:W22-01` -- X11 graphics test with the `xeyes` program
+- `openiss/openiss-opengl-cubes:W22-01` -- simple cubes example
+- `openiss/openiss-opengl-glfw:W22-01` -- example of using GLFW
+- `openiss/openiss-opengl-triangle:W22-01` -- simple triangle
 
-CUDA:
+## CUDA
 
-- `openiss-cuda-devicequery:W22-01`, includes official `cuda-samples`
-- `openiss-cuda-opengl:W22-01`, includes official `cuda-samples` (OpenGL+CUDA supported on Windows WSL)
+- `openiss/openiss-cuda-devicequery:W22-01`, includes official `cuda-samples`
+- `openiss/openiss-cuda-opengl:W22-01`, includes official `cuda-samples` (OpenGL+CUDA supported on Windows WSL)
 
-ML:
+## ML
 
 - `openiss-lambdal-stack`
+
+To work with Conda and Jupyter notebooks:
+
+```
+docker pull continuumio/miniconda3
+docker run -i -t -p 8888:8888 continuumio/miniconda3 /bin/bash -c "/opt/conda/bin/conda install jupyter -y --quiet && mkdir /opt/notebooks && /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"
+```
 
 ## Sources
 
@@ -165,13 +176,6 @@ docker run --rm -it --gpus=all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -
 ```
 
 This should also work in an Ubuntu terminal.
-
-## ML
-
-```
-docker pull continuumio/miniconda3
-docker run -i -t -p 8888:8888 continuumio/miniconda3 /bin/bash -c "/opt/conda/bin/conda install jupyter -y --quiet && mkdir /opt/notebooks && /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"
-```
 
 ## Setting up on macOS
 
