@@ -1,0 +1,11 @@
+FROM openiss:openiss-opengl-base:F22-01
+
+WORKDIR /usr/src/OpenGL
+
+RUN git clone --depth 1 https://github.com/OpenISS/OpenGL-Skeleton-Framework.git
+
+RUN cd OpenGL-Skeleton-Framework
+RUN cmake -S . -B cmake-build
+RUN cmake --build cmake-build --target install
+
+CMD ./dist/SunRay
