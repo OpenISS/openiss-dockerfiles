@@ -1,18 +1,15 @@
+# This is the base image to provide common layers to the examples
 FROM nvidia/cuda:11.7.1-devel-ubuntu20.04
 
 # --fix-missing is there in case upstream changes and updates are failing
 RUN apt-get update --fix-missing
 
-RUN apt-get install -y git make
+RUN apt-get install -y git make \
+    && apt-get clean
 
 WORKDIR /code/nvidia
 
 # Don't clone the whole history, just the latest commit
 RUN git clone --depth 1 https://github.com/NVIDIA/cuda-samples.git
 
-WORKDIR cuda-samples/Samples/1_Utilities/deviceQuery
-
-# 90 breaks currently in nvcc in 11.7
-RUN make SMS="35 37 50 52 60 61 70 75 80 86"
-
-CMD ./deviceQuery
+CMD /bin/bash

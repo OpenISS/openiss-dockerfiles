@@ -1,14 +1,4 @@
-FROM nvidia/cuda:11.7.1-devel-ubuntu20.04
-
-# --fix-missing is there in case upstream changes and updates are failing
-RUN apt-get update --fix-missing
-
-RUN apt-get install -y git make
-
-WORKDIR /code/nvidia
-
-# Don't clone the whole history, just the latest commit
-RUN git clone --depth 1 https://github.com/NVIDIA/cuda-samples.git
+FROM openiss/openiss-cuda-base:F22-01
 
 WORKDIR cuda-samples/Samples/1_Utilities/deviceQuery
 
