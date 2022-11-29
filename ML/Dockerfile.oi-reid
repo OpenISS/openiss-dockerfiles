@@ -1,4 +1,4 @@
-FROM openiss-cuda-devicequery:W22-01
+FROM openiss-cuda-devicequery:F22-01 AS buildbase
 
 #RUN apt-get update
 #RUN apt-get install -y git make
@@ -13,7 +13,8 @@ RUN apt-get install -y nvidia-utils
 #curl –O https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
 #bash Anaconda3-2020.02-Linux-x86_64.sh
 
-FROM continuumio/anaconda3
+FROM continuumio/miniconda3 AS conda
+COPY --from=conda /opt /
 
 #WORKDIR cuda-samples/Samples/1_Utilities/deviceQuery
 
@@ -21,8 +22,8 @@ WORKDIR /
 RUN git clone https://github.com/carlos-encs/openiss-reid-tfk.git
 RUN cd openiss-reid-tfk/datasets && ./get_dataset_market1501.sh
 
-#conda env create -f environment.yml -p /speed-scratch/$USER/reid-venv
-#conda activate /speed-scratch/$USER/reid-venv
+#conda env create -f environment.yml -p ./reid-venv
+#conda activate ./reid-venv
 #python reid.py
 #conda deactivate
 
