@@ -1,4 +1,10 @@
-# CUDA Tests
+# ML Tests
+
+To run Jupyter Noteboook with CUDA:
+
+```
+docker run -i -t -p 8888:8888 openiss-cuda-conda-jupyter:F22-01 /bin/bash -c "/opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"
+```
 
 There are few dockerfiles which build from the nvidia/cuda image on hub.docker...
 
