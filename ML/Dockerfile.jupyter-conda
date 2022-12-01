@@ -1,9 +1,9 @@
-FROM openiss-cuda-devicequery:F22-01 AS buildbase
-
-RUN apt-get install -y nvidia-utils
-
 FROM continuumio/miniconda3 AS conda
-COPY --from=conda /opt /
+
+FROM openiss/openiss-cuda-base:F22-01 AS buildbase
+COPY --from=conda /opt/conda /opt/conda
+
+#RUN apt-get install -y nvidia-utils
 
 RUN /opt/conda/bin/conda install jupyter -y --quiet \
     && mkdir /opt/notebooks
