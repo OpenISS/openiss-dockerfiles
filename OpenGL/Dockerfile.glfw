@@ -1,4 +1,4 @@
-FROM openiss:openiss-opengl-base:F22-01
+FROM openiss/openiss-opengl-base:F22-01
 
 WORKDIR /usr/src/OpenGL
 
