@@ -1,41 +1,33 @@
 # ML Tests
 
+## Running Conda with CUDA Support and a Jupyter Notebook
+
 To run Jupyter Noteboook with CUDA:
 
+- Execute on the command line:
 ```
-docker run -i -t -p 8888:8888 openiss-cuda-conda-jupyter:F22-01 /bin/bash -c "/opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"
+docker run --gpus all --rm -i -t -p 8888:8888 openiss-cuda-conda-jupyter:F22-01 /bin/bash -c "/opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"
 ```
+- Open browser with the IPv4 link printed on the conosole to login to Juypter notebook
+- Load your notebook
+- While running if need to install packages in the container open terminal from Docker Desktop and use the standard commands to install packages.
 
-There are few dockerfiles which build from the nvidia/cuda image on hub.docker...
+Resources:
 
-These examples are built from the Ubuntu 20.04 Nvidia CUDA image (specifically, nvidia/cuda:11.7.1-devel-ubuntu20.04) on [Docker Hub](https://hub.docker.com) using the the [cuda-samples](https://github.com/NVIDIA/cuda-samples) repo.
+- Docker file: `Dockerfile.jupyter-conda`
+- Binary image on the dockerhub: https://hub.docker.com/r/openiss/openiss-cuda-conda-jupyter/tags
 
+## OpenISS Re-identification Applicaiton using YOLO
 
-## Device query test
+To run:
 
-This will build the [deviceQuery](https://github.com/NVIDIA/cuda-samples/tree/master/Samples/1_Utilities/deviceQuery) program from cuda-samples.
-
+- Execute:
 ```
-docker build -t device-query -f Dockerfile.deviceQuery .
+docker run --name oi-reid --gpus all --rm -e DISPLAY=<your_ipv4_address>:0.0 openiss-reid:F22-01
 ```
+- Init and activate conda enviroment inside the container as needed
 
-To run it you need to use the `--gpus` flag or else it will fail:
-```
-docker run --name device-query --gpus all --rm deviceQuery:latest
-```
+Resources:
 
-## OpenGL (non-functional on Windows)
-
-**Warning:** This will not work with WSL because it is not supported yet. See: [https://docs.nvidia.com/cuda/wsl-user-guide/index.html#features-not-yet-supported](https://docs.nvidia.com/cuda/wsl-user-guide/index.html#features-not-yet-supported)
-
-This will build the [simpleGL sample](https://github.com/NVIDIA/cuda-samples/tree/master/Samples/5_Domain_Specific/simpleGL)
-
-```
-docker build -t simple-gl -f Dockerfile.simpleGL .
-```
-
-To run it use the you need to use the `--gpus` flag and a have an X server running (See OpenGL examples).
-
-```
-docker run --name simple-gl --gpus all --rm -e DISPLAY=<your_ipv4_address>:0.0 simpleGL:latest
-```
+- Docker file: `Dockerfile.oi-reid`
+- Binary image on the dockerhub: https://hub.docker.com/r/openiss/openiss-reid/tags
