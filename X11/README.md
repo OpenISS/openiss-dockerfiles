@@ -47,19 +47,14 @@ docker build -f Dockerfile.xeyes . -t xeyes
 docker run --rm --name xeyes -e DISPLAY=<your_IPv4_address>:0.0 xeyes:latest
 ```
 
+Or use a pre-built image: https://hub.docker.com/r/openiss/openiss-xeyes
+
+```
+docker run --rm --name xeyes -e DISPLAY=<your_IPv4_address>:0.0 openiss/openiss-xeyes:F22-01
+```
+
+
 ![xeyes](images/xeyes.png)
 
 If you see the xeyes program appear, that means graphics are working.
 (The xeyes example is not technically OpenGL, but more so X11 but allows for a quick test of graphical display from Linux to Windows).
-
-## Running the OpenGL examples
-
-Similarly, to run the OpenGL examples. Build and run them with their respective Dockerfiles.
-
-eg:
-```
-docker build -f Dockerfile.cubes . -t cubes
-docker run --rm --name cubes -e DISPLAY=<your_ipv4_address>:0.0 cubes:latest
-```
-
-You can test GLFW by building `Dockerfile.glfw` and the triangle OpenGL example using `Dockerfile.glfw`.

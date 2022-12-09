@@ -1,65 +1,32 @@
-# Running Graphics Programs from Docker
+# Running OpenGL Programs from Docker
 
-## Windows
+First, complete X11 server setup and test it.
+See [X11](../X11) for instructions and quick graphics tests after the setup is done.
+Having made sure the graphics is working can test OpenGL examples or any windowing
+applications from within the containers.
 
-Install either [Xming](https://sourceforge.net/projects/xming/) or [VcXsrv](https://sourceforge.net/projects/vcxsrv/).
+## Images
 
-Once installed run XLaunch
+The `Dockerfile.base` provides the common base image for all samples. The images
+can be built from scratch or pulled.
 
-1. Select **Multiple Windows**
+- Base OpenGL image for all projects: https://hub.docker.com/r/openiss/openiss-opengl-base/tags
+- Blank OpenGL window: https://hub.docker.com/r/openiss/openiss-opengl-glfw/tags
+- Simple OpenGL triangle: https://hub.docker.com/r/openiss/openiss-opengl-triangle/tags
+- A interactive 3D world of simple cubes: https://hub.docker.com/r/openiss/openiss-opengl-cubes/tags
 
-![XLaunch Multiple Windows](images/XLaunch_1_multiple_windows.png)
+### Running the OpenGL examples
 
-2. Set **Display** to **0**
+To run the OpenGL examples, build and run them with their respective Dockerfiles, e.g.:
 
-![XLaunch Display 0](images/XLaunch_2_display_0.png)
-
-3. Select **Start no client**
-
-![XLaunch Start no client](images/XLaunch_3_start_no_client.png)
-
-4. Check **Disable Access Control**
-
-![XLaunch Display access control](images/XLaunch_4_display_access_control.png)
-
-5. Finish
-
-## Testing a Graphical Program
-
-First get your IPv4 address:
-
-### Windows:
-```
-ipconfig
-```
-Under the `Ethernet adapter vEthernet (WSL):` header there should be a line containing `IPv4 Address`.
-
-### Linux:
-```
-ip route
-```
-
-The first line should contain the IP address.
-
-In the terminal run:
-```
-docker build -f Dockerfile.xeyes . -t xeyes
-docker run --rm --name xeyes -e DISPLAY=<your_IPv4_address>:0.0 xeyes:latest
-```
-
-![xeyes](images/xeyes.png)
-
-If you see the xeyes program appear, that means graphics are working.
-(The xeyes example is not technically OpenGL, but more so X11 but allows for a quick test of graphical display from Linux to Windows).
-
-## Running the OpenGL examples
-
-Similarly, to run the OpenGL examples. Build and run them with their respective Dockerfiles.
-
-eg:
 ```
 docker build -f Dockerfile.cubes . -t cubes
 docker run --rm --name cubes -e DISPLAY=<your_ipv4_address>:0.0 cubes:latest
 ```
 
 You can test GLFW by building `Dockerfile.glfw` and the triangle OpenGL example using `Dockerfile.glfw`.
+
+The `Dockerfile.skeleton` depeonstrates a student OpenGL project that tests
+OpenISS skeleton tracking framework using null software devices (no drivers for actual cameras).
+
+If rebuilding with NVIDIA or AMD drivers make sure to pass the `--gpus all` option to `docker run`.

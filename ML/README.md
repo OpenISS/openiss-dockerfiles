@@ -17,7 +17,7 @@ Resources:
 - Docker file: `Dockerfile.jupyter-conda`
 - Binary image on the dockerhub: https://hub.docker.com/r/openiss/openiss-cuda-conda-jupyter/tags
 
-## OpenISS Re-identification Applicaiton using YOLO
+## OpenISS Re-identification Applicaiton (computer vision)
 
 To run:
 

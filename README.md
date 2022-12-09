@@ -31,43 +31,40 @@ TL;DR
 - Prebuilt images on DockerHub: https://hub.docker.com/u/openiss
 - For prebuilt images on GitHub, use `ghcr.io`
 
-Small vanilla sample containers:
-
-## X11
-
-- `openiss/openiss-xeyes:F22-01` -- X11 graphics test with the `xeyes` program 
-- see the instructions in [here](./OpenGL) how to setup graphics forwarding between the container and Windows with an X server
-
-## OpenGL
-
-- `openiss/openiss-opengl-cubes:F22-01` -- simple cubes example
-- `openiss/openiss-opengl-glfw:F22-01` -- example of using GLFW
-- `openiss/openiss-opengl-triangle:F22-01` -- simple triangle
-- `openiss-opengl-ogl` -- OpenISS OGL extension samples
-- `openiss-opengl-sample-projects` -- all inclusive
-
-## CUDA
-
-- `openiss/openiss-cuda-devicequery:F22-01`, includes official `cuda-samples`
-- `openiss/openiss-cuda-opengl:F22-01`, includes official `cuda-samples` (OpenGL+CUDA supported on Windows WSL)
-
-## ML
-
-- `openiss-lambdal-stack`
-
-To work with Conda and Jupyter notebooks:
-
-```
-docker pull continuumio/miniconda3
-docker run -i -t -p 8888:8888 continuumio/miniconda3 /bin/bash -c "/opt/conda/bin/conda install jupyter -y --quiet && mkdir /opt/notebooks && /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"
-```
-
 ## Sources
 
+- `Dockerfile.u20-based` -- common packages for most images as a base image
 - [X11](X11/) -- basic X11 graphics test
 - [CUDA](CUDA/) -- CUDA-specific samples
 - [OpenGL](OpenGL/) -- OpenGL-specific samples
 - [ML](ML/) -- Machine learning and deep-learning related images and examples
+
+## Small sample containers
+
+### X11
+
+- `openiss/openiss-xeyes:F22-01` -- X11 graphics test with the `xeyes` program 
+- see the instructions in [here](./OpenGL) how to setup graphics forwarding between the container and Windows with an X server
+
+### OpenGL
+
+- `openiss/openiss-opengl-cubes:F22-01` -- simple cubes example
+- `openiss/openiss-opengl-glfw:F22-01` -- example of using GLFW
+- `openiss/openiss-opengl-triangle:F22-01` -- simple triangle
+- `openiss/openiss-opengl-skeleton:F22-01` -- OpenGL Skeleton Tracking framework
+- `openiss-opengl-ogl` -- OpenISS OGL extension samples
+- `openiss-opengl-sample-projects` -- all inclusive
+
+### CUDA
+
+- `openiss/openiss-cuda-devicequery:F22-01`, includes official `cuda-samples`
+- `openiss/openiss-cuda-opengl:F22-01`, includes official `cuda-samples` (OpenGL+CUDA are not supported on Windows WSL)
+
+### ML
+
+- `openiss/openiss-cuda-conda-jupyter:F22-01`
+- `openiss/openiss/openiss-reid:F22-01`
+- `openiss-lambdal-stack`
 
 ## Pulling
 
@@ -78,13 +75,13 @@ docker pull openiss/openiss-opengl-cubes:F22-01
 To pull a specific tag, suffix it at the end of the pull:
 
 ```
-docker run --rm -it --gpus=all openiss/openiss-opengl-cubes:F22-01
+docker run --rm -it --gpus all openiss/openiss-opengl-cubes:F22-01
 ```
 
 ## Running 
 
 ```
-docker run --rm -it --gpus=all openiss/openiss-opengl-cubes:F22-01
+docker run --rm -it --gpus all openiss/openiss-opengl-cubes:F22-01
 ```
 
 # Setting up

@@ -1,9 +1,16 @@
 # CUDA Tests
 
-There are few dockerfiles which build from the nvidia/cuda image on hub.docker...
+There are few dockerfiles which build from the nvidia/cuda image on hub.docker.com.
 
 These examples are built from the Ubuntu 20.04 Nvidia CUDA image (specifically, nvidia/cuda:11.7.1-devel-ubuntu20.04) on [Docker Hub](https://hub.docker.com) using the the [cuda-samples](https://github.com/NVIDIA/cuda-samples) repo.
 
+The `Dockerfile.base` provides the common base image for all samples.
+
+Pre-built images:
+
+- https://hub.docker.com/r/openiss/openiss-cuda-base/tags
+- https://hub.docker.com/r/openiss/openiss-cuda-devicequery/tags
+- https://hub.docker.com/r/openiss/openiss-cuda-simplegl/tags
 
 ## Device query test
 
