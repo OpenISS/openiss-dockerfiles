@@ -22,6 +22,7 @@ the documentation is further below.
 
 * These instructions originally tested and created by [Jonathan Llewellyn](https://github.com/inexistenz)
 * Maintenance, editorializing, OpenISS and HPC updates/support by Serguei Mokhov
+* [Derived work for COMP371](https://github.com/tiperiu/COMP371_dockerimage)
 
 # Sample containers
 
