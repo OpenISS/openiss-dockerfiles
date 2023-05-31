@@ -19,6 +19,14 @@ pushd openiss
 # git submodule update --init --recursive openedet
 # Getting ERROR: error: pathspec 'openedet' did not match any file(s) known to git
 git clone --depth 1 --branch integration git@bitbucket.org:rt-mocap-vfx/openedet.git
+
+# same deal here
+# git submodule update --init --recursive ogl
+echo "Updating ogl submodule in openiss..."
+# TODO: Should be
+# git submodule update --init --recursive ogl
+git clone --depth 1 https://github.com/opengl-tutorials/ogl.git
+
 popd
 
 # Build the container
